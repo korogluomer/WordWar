@@ -1,0 +1,6 @@
+framework module Pods_WordWar {
+  umbrella header "Pods-WordWar-umbrella.h"
+
+  export *
+  module * { export * }
+}
