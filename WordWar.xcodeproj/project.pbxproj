@@ -10,12 +10,22 @@
 		2E6626299F480312168A6D97 /* Pods_WordWar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36738D78828CCDF7AB81985 /* Pods_WordWar.framework */; };
 		A816E6032278D9DD00C87769 /* KelimeDenemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816E6022278D9DD00C87769 /* KelimeDenemeController.swift */; };
 		A816E6052278DB9300C87769 /* KayitOlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816E6042278DB9300C87769 /* KayitOlController.swift */; };
+		A81ACF7222A1D5BC0058160B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81ACF7122A1D5BC0058160B /* User.swift */; };
+		A83267CA22A28ED30067DF88 /* UserBilgileriAl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267C922A28ED30067DF88 /* UserBilgileriAl.swift */; };
+		A83267CC22A29CC60067DF88 /* RakipAraniyorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267CB22A29CC60067DF88 /* RakipAraniyorController.swift */; };
+		A83267CE22A2A3570067DF88 /* RakipBul.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267CD22A2A3570067DF88 /* RakipBul.swift */; };
+		A83267D022A2A7F10067DF88 /* ArkadaslarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267CF22A2A7F10067DF88 /* ArkadaslarController.swift */; };
+		A83267D222A2C2950067DF88 /* VersusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267D122A2C2950067DF88 /* VersusController.swift */; };
 		A86AF0702278B2A900017719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86AF06F2278B2A900017719 /* AppDelegate.swift */; };
 		A86AF0722278B2A900017719 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86AF0712278B2A900017719 /* ViewController.swift */; };
 		A86AF0752278B2AA00017719 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0732278B2AA00017719 /* Main.storyboard */; };
 		A86AF0772278B2AC00017719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0762278B2AC00017719 /* Assets.xcassets */; };
 		A86AF07A2278B2AC00017719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0782278B2AC00017719 /* LaunchScreen.storyboard */; };
 		A86AF0822278C15700017719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0812278C15700017719 /* GoogleService-Info.plist */; };
+		A872C35022A3F461007812DA /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A872C34F22A3F461007812DA /* GameController.swift */; };
+		A884185A22834AE9000B8F12 /* GirisYapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884185922834AE9000B8F12 /* GirisYapController.swift */; };
+		A884185C22836FB9000B8F12 /* ProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884185B22836FB9000B8F12 /* ProfilController.swift */; };
+		A8C23C85229E8B650019B399 /* KelimeKontrol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C23C84229E8B650019B399 /* KelimeKontrol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +33,12 @@
 		9E79AA41AD5E8CDC96C6F253 /* Pods-WordWar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordWar.release.xcconfig"; path = "Target Support Files/Pods-WordWar/Pods-WordWar.release.xcconfig"; sourceTree = "<group>"; };
 		A816E6022278D9DD00C87769 /* KelimeDenemeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelimeDenemeController.swift; sourceTree = "<group>"; };
 		A816E6042278DB9300C87769 /* KayitOlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KayitOlController.swift; sourceTree = "<group>"; };
+		A81ACF7122A1D5BC0058160B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A83267C922A28ED30067DF88 /* UserBilgileriAl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBilgileriAl.swift; sourceTree = "<group>"; };
+		A83267CB22A29CC60067DF88 /* RakipAraniyorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakipAraniyorController.swift; sourceTree = "<group>"; };
+		A83267CD22A2A3570067DF88 /* RakipBul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakipBul.swift; sourceTree = "<group>"; };
+		A83267CF22A2A7F10067DF88 /* ArkadaslarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArkadaslarController.swift; sourceTree = "<group>"; };
+		A83267D122A2C2950067DF88 /* VersusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersusController.swift; sourceTree = "<group>"; };
 		A86AF06C2278B2A900017719 /* WordWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A86AF06F2278B2A900017719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A86AF0712278B2A900017719 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +47,10 @@
 		A86AF0792278B2AC00017719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A86AF07B2278B2AC00017719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A86AF0812278C15700017719 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A872C34F22A3F461007812DA /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		A884185922834AE9000B8F12 /* GirisYapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GirisYapController.swift; sourceTree = "<group>"; };
+		A884185B22836FB9000B8F12 /* ProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilController.swift; sourceTree = "<group>"; };
+		A8C23C84229E8B650019B399 /* KelimeKontrol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelimeKontrol.swift; sourceTree = "<group>"; };
 		C36738D78828CCDF7AB81985 /* Pods_WordWar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordWar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,10 +105,20 @@
 			isa = PBXGroup;
 			children = (
 				A816E6022278D9DD00C87769 /* KelimeDenemeController.swift */,
+				A8C23C84229E8B650019B399 /* KelimeKontrol.swift */,
 				A86AF06F2278B2A900017719 /* AppDelegate.swift */,
 				A86AF0712278B2A900017719 /* ViewController.swift */,
 				A86AF0732278B2AA00017719 /* Main.storyboard */,
+				A872C34F22A3F461007812DA /* GameController.swift */,
+				A83267CB22A29CC60067DF88 /* RakipAraniyorController.swift */,
+				A81ACF7122A1D5BC0058160B /* User.swift */,
+				A884185B22836FB9000B8F12 /* ProfilController.swift */,
+				A83267CF22A2A7F10067DF88 /* ArkadaslarController.swift */,
+				A83267C922A28ED30067DF88 /* UserBilgileriAl.swift */,
+				A884185922834AE9000B8F12 /* GirisYapController.swift */,
 				A86AF0762278B2AC00017719 /* Assets.xcassets */,
+				A83267CD22A2A3570067DF88 /* RakipBul.swift */,
+				A83267D122A2C2950067DF88 /* VersusController.swift */,
 				A86AF0782278B2AC00017719 /* LaunchScreen.storyboard */,
 				A86AF07B2278B2AC00017719 /* Info.plist */,
 				A86AF0812278C15700017719 /* GoogleService-Info.plist */,
@@ -225,9 +255,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A816E6032278D9DD00C87769 /* KelimeDenemeController.swift in Sources */,
+				A884185C22836FB9000B8F12 /* ProfilController.swift in Sources */,
+				A83267CC22A29CC60067DF88 /* RakipAraniyorController.swift in Sources */,
+				A8C23C85229E8B650019B399 /* KelimeKontrol.swift in Sources */,
 				A86AF0722278B2A900017719 /* ViewController.swift in Sources */,
+				A83267CA22A28ED30067DF88 /* UserBilgileriAl.swift in Sources */,
+				A83267CE22A2A3570067DF88 /* RakipBul.swift in Sources */,
+				A83267D222A2C2950067DF88 /* VersusController.swift in Sources */,
+				A81ACF7222A1D5BC0058160B /* User.swift in Sources */,
 				A86AF0702278B2A900017719 /* AppDelegate.swift in Sources */,
+				A884185A22834AE9000B8F12 /* GirisYapController.swift in Sources */,
 				A816E6052278DB9300C87769 /* KayitOlController.swift in Sources */,
+				A83267D022A2A7F10067DF88 /* ArkadaslarController.swift in Sources */,
+				A872C35022A3F461007812DA /* GameController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

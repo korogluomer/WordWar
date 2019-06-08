@@ -7,14 +7,31 @@
 //
 
 import UIKit
+import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var ref:DatabaseReference!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        ref = Database.database().reference()
+        
+        if Auth.auth().currentUser != nil{
+            self.ref.child("users").child((Auth.auth().currentUser?.uid)!).child("status").setValue("online")
+            
+            UserBilgiler.bilgileriAl()
+            
+            let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
+            let protectedPage = mainStoryboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
+            window!.rootViewController = protectedPage
+            window!.makeKeyAndVisible()
+            
+        }
+        
+        
         return true
     }
 
@@ -24,12 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        if Auth.auth().currentUser != nil{
+            self.ref.child("users").child((Auth.auth().currentUser?.uid)!).child("status").setValue("offline")
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        if Auth.auth().currentUser != nil{
+            self.ref.child("users").child((Auth.auth().currentUser?.uid)!).child("status").setValue("online")
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

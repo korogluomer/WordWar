@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 class KelimeDenemeController: UIViewController {
 
     @IBOutlet weak var kelimeOnay: UILabel!
@@ -16,26 +15,20 @@ class KelimeDenemeController: UIViewController {
         super.viewDidLoad()
 
     }
-
-    
-    var ref: DatabaseReference!
-    
-    
-    
     @IBAction func Dene(_ sender: Any) {
-        ref = Database.database().reference()
-        var sozcuk:String = kelime.text!
-        sozcuk = String(sozcuk.prefix(1))
-        ref.child("words").child(sozcuk.lowercased()).child((kelime.text?.lowercased())!).observeSingleEvent(of: .value, with: {(data)	in
-            let word = data.value as? String
-            if word != nil{
-                self.kelimeOnay.text = word ?? "kelime yok"
-                self.kelimeOnay.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-            }
-            else{
-                self.kelimeOnay.text = self.kelime.text!
-                self.kelimeOnay.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-            }
-        })
+        let kelimeKontrol = KelimeKontrol()
+        kelimeKontrol.kelimeKontrolEt(kelime: kelime.text!, fonksiyon: kontrolFunc)
+        
+    }
+    func kontrolFunc(durum:Bool){
+        if durum{
+            kelimeOnay.textColor=#colorLiteral(red: 0, green: 0.8230092005, blue: 0.09701581118, alpha: 1)
+            kelimeOnay.text=kelime.text
+        }
+        else{
+            kelimeOnay.textColor=#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+            kelimeOnay.text=kelime.text
+        }
+        print(durum)
     }
 }
