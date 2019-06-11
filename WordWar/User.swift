@@ -11,8 +11,7 @@ import Foundation
 class User {
     
     var id:String?
-    var adi:String?
-    var soyadi:String?
+    var name:String?
     var win:Int?
     var lose:Int?
     var email:String?
@@ -22,10 +21,9 @@ class User {
     
     
     static var nesneUser:User?=nil
-    init(id:String?,adi:String?,soyadi:String?,email:String?,nickName:String?,image:String?,win:Int?,lose:Int?,enemy:String?) {
+    init(id:String?,name:String?,email:String?,nickName:String?,image:String?,win:Int?,lose:Int?,enemy:String?) {
         self.id=id
-        self.adi=adi
-        self.soyadi=soyadi
+        self.name=name
         self.email=email
         self.nickName=nickName
         self.image=image
@@ -35,7 +33,7 @@ class User {
     }
     static func getUserNesne() -> User{
         if nesneUser==nil{
-            nesneUser=User(id: "", adi: "Ömer", soyadi: "Köroğlu", email: "", nickName: "Von9", image: "", win: 0, lose: 0,enemy:"bos")
+            nesneUser=User(id: "", name: "Ömer", email: "", nickName: "Von9", image: "", win: 0, lose: 0,enemy:"bos")
         }
         return nesneUser!
         

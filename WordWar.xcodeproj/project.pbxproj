@@ -11,6 +11,7 @@
 		A816E6032278D9DD00C87769 /* KelimeDenemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816E6022278D9DD00C87769 /* KelimeDenemeController.swift */; };
 		A816E6052278DB9300C87769 /* KayitOlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816E6042278DB9300C87769 /* KayitOlController.swift */; };
 		A81ACF7222A1D5BC0058160B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81ACF7122A1D5BC0058160B /* User.swift */; };
+		A81AE61922AFBF41006EF142 /* SonucController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81AE61822AFBF41006EF142 /* SonucController.swift */; };
 		A83267CA22A28ED30067DF88 /* UserBilgileriAl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267C922A28ED30067DF88 /* UserBilgileriAl.swift */; };
 		A83267CC22A29CC60067DF88 /* RakipAraniyorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267CB22A29CC60067DF88 /* RakipAraniyorController.swift */; };
 		A83267CE22A2A3570067DF88 /* RakipBul.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83267CD22A2A3570067DF88 /* RakipBul.swift */; };
@@ -23,6 +24,8 @@
 		A86AF07A2278B2AC00017719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0782278B2AC00017719 /* LaunchScreen.storyboard */; };
 		A86AF0822278C15700017719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0812278C15700017719 /* GoogleService-Info.plist */; };
 		A872C35022A3F461007812DA /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A872C34F22A3F461007812DA /* GameController.swift */; };
+		A87388DA22AD51A700762B41 /* RakipBilgileriAl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87388D922AD51A700762B41 /* RakipBilgileriAl.swift */; };
+		A87388DC22AD521D00762B41 /* Rakip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87388DB22AD521D00762B41 /* Rakip.swift */; };
 		A884185A22834AE9000B8F12 /* GirisYapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884185922834AE9000B8F12 /* GirisYapController.swift */; };
 		A884185C22836FB9000B8F12 /* ProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884185B22836FB9000B8F12 /* ProfilController.swift */; };
 		A8C23C85229E8B650019B399 /* KelimeKontrol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C23C84229E8B650019B399 /* KelimeKontrol.swift */; };
@@ -34,6 +37,7 @@
 		A816E6022278D9DD00C87769 /* KelimeDenemeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelimeDenemeController.swift; sourceTree = "<group>"; };
 		A816E6042278DB9300C87769 /* KayitOlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KayitOlController.swift; sourceTree = "<group>"; };
 		A81ACF7122A1D5BC0058160B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A81AE61822AFBF41006EF142 /* SonucController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonucController.swift; sourceTree = "<group>"; };
 		A83267C922A28ED30067DF88 /* UserBilgileriAl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBilgileriAl.swift; sourceTree = "<group>"; };
 		A83267CB22A29CC60067DF88 /* RakipAraniyorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakipAraniyorController.swift; sourceTree = "<group>"; };
 		A83267CD22A2A3570067DF88 /* RakipBul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakipBul.swift; sourceTree = "<group>"; };
@@ -48,6 +52,8 @@
 		A86AF07B2278B2AC00017719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A86AF0812278C15700017719 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A872C34F22A3F461007812DA /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		A87388D922AD51A700762B41 /* RakipBilgileriAl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakipBilgileriAl.swift; sourceTree = "<group>"; };
+		A87388DB22AD521D00762B41 /* Rakip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rakip.swift; sourceTree = "<group>"; };
 		A884185922834AE9000B8F12 /* GirisYapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GirisYapController.swift; sourceTree = "<group>"; };
 		A884185B22836FB9000B8F12 /* ProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilController.swift; sourceTree = "<group>"; };
 		A8C23C84229E8B650019B399 /* KelimeKontrol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelimeKontrol.swift; sourceTree = "<group>"; };
@@ -112,9 +118,12 @@
 				A872C34F22A3F461007812DA /* GameController.swift */,
 				A83267CB22A29CC60067DF88 /* RakipAraniyorController.swift */,
 				A81ACF7122A1D5BC0058160B /* User.swift */,
+				A87388DB22AD521D00762B41 /* Rakip.swift */,
 				A884185B22836FB9000B8F12 /* ProfilController.swift */,
+				A81AE61822AFBF41006EF142 /* SonucController.swift */,
 				A83267CF22A2A7F10067DF88 /* ArkadaslarController.swift */,
 				A83267C922A28ED30067DF88 /* UserBilgileriAl.swift */,
+				A87388D922AD51A700762B41 /* RakipBilgileriAl.swift */,
 				A884185922834AE9000B8F12 /* GirisYapController.swift */,
 				A86AF0762278B2AC00017719 /* Assets.xcassets */,
 				A83267CD22A2A3570067DF88 /* RakipBul.swift */,
@@ -254,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A87388DA22AD51A700762B41 /* RakipBilgileriAl.swift in Sources */,
 				A816E6032278D9DD00C87769 /* KelimeDenemeController.swift in Sources */,
 				A884185C22836FB9000B8F12 /* ProfilController.swift in Sources */,
 				A83267CC22A29CC60067DF88 /* RakipAraniyorController.swift in Sources */,
@@ -262,10 +272,12 @@
 				A83267CA22A28ED30067DF88 /* UserBilgileriAl.swift in Sources */,
 				A83267CE22A2A3570067DF88 /* RakipBul.swift in Sources */,
 				A83267D222A2C2950067DF88 /* VersusController.swift in Sources */,
+				A81AE61922AFBF41006EF142 /* SonucController.swift in Sources */,
 				A81ACF7222A1D5BC0058160B /* User.swift in Sources */,
 				A86AF0702278B2A900017719 /* AppDelegate.swift in Sources */,
 				A884185A22834AE9000B8F12 /* GirisYapController.swift in Sources */,
 				A816E6052278DB9300C87769 /* KayitOlController.swift in Sources */,
+				A87388DC22AD521D00762B41 /* Rakip.swift in Sources */,
 				A83267D022A2A7F10067DF88 /* ArkadaslarController.swift in Sources */,
 				A872C35022A3F461007812DA /* GameController.swift in Sources */,
 			);

@@ -15,7 +15,7 @@ class ProfilController: UIViewController {
     var window: UIWindow?
     var ref:DatabaseReference!
     var user:User!
-    
+    @IBOutlet weak var nickname: UILabel!
     @IBOutlet weak var resim: UIImageView!
     @IBOutlet weak var adSoyadText: UILabel!
     @IBOutlet weak var loseText: UILabel!
@@ -29,7 +29,7 @@ class ProfilController: UIViewController {
         ref = Database.database().reference()
         user=User.getUserNesne()
         
-        adSoyadText.text="\(user.adi!) \(user.soyadi!)"
+        adSoyadText.text="\(user.name!)"
         email.text=user.email!
         DispatchQueue.main.async {
             if let data = try? Data(contentsOf: URL(string: self.user.image!)!){
@@ -40,6 +40,7 @@ class ProfilController: UIViewController {
         }
         loseText.text=String(user.lose!)
         winText.text=String(user.win!)
+        nickname.text=String(user.nickName!)
         
     }
     

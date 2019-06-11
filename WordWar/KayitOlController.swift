@@ -18,15 +18,17 @@ class KayitOlController: UIViewController,UIImagePickerControllerDelegate,UINavi
     var imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
+        ref = Database.database().reference().child("users")
     }
     @IBAction func KayitOl(_ sender: Any) {
         Auth.auth().createUser(withEmail: email.text!, password: sifre.text!) { authResult, error in
             if error == nil{
-                self.ref.child("users").child((authResult?.user.uid)!).child("status").setValue("online")
-                self.ref.child("users").child((authResult?.user.uid)!).child("enemy").setValue("bos")
-                self.ref.child("users").child((authResult?.user.uid)!).child("win").setValue(0)
-                self.ref.child("users").child((authResult?.user.uid)!).child("lose").setValue(0)
+                self.ref.child((authResult?.user.uid)!).child("status").setValue("online")
+                self.ref.child((authResult?.user.uid)!).child("enemy").setValue("bos")
+                self.ref.child((authResult?.user.uid)!).child("win").setValue(0)
+                self.ref.child((authResult?.user.uid)!).child("lose").setValue(0)
+                self.ref.child((authResult?.user.uid)!).child("name").setValue(self.adSoyad.text!)
+                self.ref.child((authResult?.user.uid)!).child("nickname").setValue(self.kullaniciAdi.text!)
                 
                 var data = Data()
                 data = (self.resim.image?.jpegData(compressionQuality: 0.75))!
@@ -48,9 +50,17 @@ class KayitOlController: UIViewController,UIImagePickerControllerDelegate,UINavi
                             // Uh-oh, an error occurred!
                             return
                         }
-                        self.ref.child("users").child((authResult?.user.uid)!).child("image").setValue(url!.absoluteString)
+                        self.ref.child((authResult?.user.uid)!).child("image").setValue(url!.absoluteString)
+                        
+                        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "TabBar")    as! UITabBarController
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.window?.rootViewController = myTabBar
+                        appDelegate.window?.makeKeyAndVisible()
                     }
                 }
+                
+                
+                
             }
             else{
                 let alert = UIAlertController(title: "Uyarı!", message: "E-Posta'ya ait hesap bulunmaktadır.", preferredStyle: .alert)

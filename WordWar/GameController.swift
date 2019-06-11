@@ -170,11 +170,11 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func skorKontrol() {
-        if Int(homeScore.text!)! >= 100 {
-            print("oyun bitti kazandın")
+        if Int(homeScore.text!)! >= 100{
+            oyunuBitir()
         }
         else if Int(awayScore.text!)! >= 100{
-            print("oyun bitti kaybettin")
+            oyunuBitir()
         }
     }
     
@@ -185,5 +185,16 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 print("oyun bitti")
             }
         })
+    }
+    
+    func oyunuBitir() {
+        ref.child(User.getUserNesne().id!).child("turn").removeAllObservers()
+        ref.child(User.getUserNesne().id!).child("words").removeAllObservers()
+        ref.child(User.getUserNesne().enemy!).child("words").removeAllObservers()
+        progressTimer.invalidate()
+        let mySonucScreen = self.storyboard?.instantiateViewController(withIdentifier: "SonucScreen")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.makeKeyAndVisible()
+        appDelegate.window?.rootViewController = mySonucScreen
     }
 }
