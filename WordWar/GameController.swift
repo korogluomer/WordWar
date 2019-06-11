@@ -111,9 +111,9 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.homeWords.append(snapshot.value as! String)
             self.homeScorePoint+=((snapshot.value as? String)?.count)!
             self.ref.child(User.getUserNesne().id!).child("score").setValue(self.homeScorePoint)
-            self.homeScore.text = String(self.homeScorePoint)
             self.homeTableView.reloadData()
             self.awayCharText.text = String((self.kelime?.suffix(1))!).uppercased()
+            self.homeScore.text = String(self.homeScorePoint)
             self.skorKontrol()
         })
         
@@ -135,6 +135,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
             if (snapshot.value as? Bool)!{
                 if !self.kelimeGeldiMi {
                     self.homeCharText.text = self.alfabe[Int.random(in: 0 ..< self.alfabe.count)].uppercased()
+                    self.rakipCanKontrol()
                 }
                 self.timerProgress.progress = 1.0
                 self.progressTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(GameController.updateProgressView), userInfo: nil, repeats: true)
@@ -182,16 +183,28 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ref.child(User.getUserNesne().id!).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
             self.can = ((snapshot.value as? Int)!)
             if self.can == 0{
-                print("oyun bitti")
+                self.progressTimer.invalidate()
+                self.oyunuBitir()
+            }
+        })
+    }
+    
+    func rakipCanKontrol() {
+        ref.child(User.getUserNesne().enemy!).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
+            if ((snapshot.value as? Int)!) == 0{
+                self.oyunuBitir()
             }
         })
     }
     
     func oyunuBitir() {
+        if progressTimer != nil{
+            progressTimer.invalidate()
+            progressTimer=nil
+        }
         ref.child(User.getUserNesne().id!).child("turn").removeAllObservers()
         ref.child(User.getUserNesne().id!).child("words").removeAllObservers()
         ref.child(User.getUserNesne().enemy!).child("words").removeAllObservers()
-        progressTimer.invalidate()
         let mySonucScreen = self.storyboard?.instantiateViewController(withIdentifier: "SonucScreen")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.makeKeyAndVisible()

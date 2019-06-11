@@ -11,6 +11,8 @@ import Firebase
 
 class SonucController: UIViewController {
 
+    @IBOutlet weak var awayImage: UIImageView!
+    @IBOutlet weak var homeImage: UIImageView!
     @IBOutlet weak var awayScore: UILabel!
     @IBOutlet weak var homeScore: UILabel!
     @IBOutlet weak var awayNickname: UILabel!
@@ -28,6 +30,17 @@ class SonucController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        DispatchQueue.main.async {
+            if let data = try? Data(contentsOf: URL(string: self.user.image!)!){
+                let image = UIImage(data: data)
+                self.homeImage.image = image
+            }
+            if let data = try? Data(contentsOf: URL(string: self.rakip.image!)!){
+                let image = UIImage(data: data)
+                self.awayImage.image = image
+                return
+            }
+        }
         nicknameGetir()
         winRateGetir()
         rankGetir()
@@ -92,7 +105,6 @@ class SonucController: UIViewController {
     func skorGetir(uid:String,scoreText:UILabel) {
         ref.child(uid).child("score").observeSingleEvent(of: .value, with: {(snapshot) in
             scoreText.text=String(snapshot.value as! Int)
-            self.ref.child(User.getUserNesne().id!).child("score").removeValue()
             self.ref.child(User.getUserNesne().id!).child("health").removeValue()
             self.ref.child(User.getUserNesne().id!).child("turn").removeValue()
             self.ref.child(User.getUserNesne().id!).child("words").removeValue()
@@ -102,5 +114,8 @@ class SonucController: UIViewController {
         
         
     }
-
+    @IBAction func geriDon(_ sender: Any) {
+        self.ref.child(User.getUserNesne().id!).child("score").removeValue()
+    }
+    
 }

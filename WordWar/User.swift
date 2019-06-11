@@ -33,7 +33,7 @@ class User {
     }
     static func getUserNesne() -> User{
         if nesneUser==nil{
-            nesneUser=User(id: "", name: "Ömer", email: "", nickName: "Von9", image: "", win: 0, lose: 0,enemy:"bos")
+            nesneUser=User(id: "", name: "", email: "", nickName: "", image: "", win: 0, lose: 0,enemy:"bos")
         }
         return nesneUser!
         

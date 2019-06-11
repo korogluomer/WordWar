@@ -14,23 +14,27 @@ class VersusController: UIViewController {
     @IBOutlet weak var awayImage: UIImageView!
     @IBOutlet weak var homeID: UILabel!
     @IBOutlet weak var awayID: UILabel!
-    var user:User!
-    var rakip:Rakip!
+    var user:User=User.getUserNesne()
+    var rakip:Rakip=Rakip.getRakipNesne()
     override func viewDidLoad() {
         super.viewDidLoad()
-        user=User.getUserNesne()
-        rakip=Rakip.getRakipNesne()
         
 
-        homeID.text=RakipBul.homeUID!
-        awayID.text=RakipBul.awayUID!
-        
-        /*DispatchQueue.main.async {
+        DispatchQueue.main.async {
             if let data = try? Data(contentsOf: URL(string: self.user.image!)!){
                 let image = UIImage(data: data)
                 self.homeImage.image = image
             }
-        }*/
+            if self.rakip.image != "" {
+                if let data = try? Data(contentsOf: URL(string: self.rakip.image!)!){
+                    let image = UIImage(data: data)
+                    self.awayImage.image = image
+                    return
+                }
+            }
+        }
+        homeID.text=RakipBul.homeUID!
+        awayID.text=RakipBul.awayUID!
         
         
         DispatchQueue.main.asyncAfter(deadline: .now()+5.0){

@@ -36,7 +36,7 @@ class Rakip {
     }
     static func getRakipNesne() -> Rakip{
         if nesneRakip==nil{
-            nesneRakip=Rakip(id: "", adi: "Ömer", soyadi: "Köroğlu", email: "", nickName: "Von9", image: "", win: 0, lose: 0,enemy:"bos")
+            nesneRakip=Rakip(id: "", adi: "", soyadi: "", email: "", nickName: "", image: "", win: 0, lose: 0,enemy:"bos")
         }
         return nesneRakip!
         
