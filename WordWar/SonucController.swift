@@ -116,6 +116,12 @@ class SonucController: UIViewController {
     }
     @IBAction func geriDon(_ sender: Any) {
         self.ref.child(User.getUserNesne().id!).child("score").removeValue()
+        
+        
+        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = myTabBar
+        appDelegate.window?.makeKeyAndVisible()
     }
     
 }

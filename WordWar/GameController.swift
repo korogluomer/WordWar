@@ -172,6 +172,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func skorKontrol() {
         if Int(homeScore.text!)! >= 100{
+            ref.child(User.getUserNesne().id!).child("win").setValue(User.getUserNesne().win! + 1)
             oyunuBitir()
         }
         else if Int(awayScore.text!)! >= 100{
@@ -183,7 +184,6 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ref.child(User.getUserNesne().id!).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
             self.can = ((snapshot.value as? Int)!)
             if self.can == 0{
-                self.progressTimer.invalidate()
                 self.oyunuBitir()
             }
         })
