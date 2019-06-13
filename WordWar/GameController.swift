@@ -100,7 +100,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
             turDegis()
         }
         else{
-            print("kelime yanlış")
+            print("Kelime yanlış veya daha önceden girilmiş!")
         }
     }
 
@@ -155,6 +155,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         kelimeGeldiMi = false
         progressTimer.invalidate()
         progressTimer = nil
+        
     }
     
     var progressTimer:Timer!
@@ -171,11 +172,14 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func skorKontrol() {
-        if Int(homeScore.text!)! >= 100{
+        if Int(homeScore.text!)! >= 10{
             ref.child(User.getUserNesne().id!).child("win").setValue(User.getUserNesne().win! + 1)
+            User.getUserNesne().win = User.getUserNesne().win! + 1
             oyunuBitir()
         }
-        else if Int(awayScore.text!)! >= 100{
+        else if Int(awayScore.text!)! >= 10{
+            ref.child(User.getUserNesne().enemy!).child("win").setValue(Rakip.getRakipNesne().win! + 1)
+            Rakip.getRakipNesne().win = Rakip.getRakipNesne().win! + 1
             oyunuBitir()
         }
     }
@@ -184,7 +188,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ref.child(User.getUserNesne().id!).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
             self.can = ((snapshot.value as? Int)!)
             if self.can == 0{
-                self.oyunuBitir()
+                self.oyunuBitirCan()
             }
         })
     }
@@ -192,7 +196,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func rakipCanKontrol() {
         ref.child(User.getUserNesne().enemy!).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
             if ((snapshot.value as? Int)!) == 0{
-                self.oyunuBitir()
+                self.oyunuBitirCan()
             }
         })
     }
@@ -206,6 +210,20 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ref.child(User.getUserNesne().id!).child("words").removeAllObservers()
         ref.child(User.getUserNesne().enemy!).child("words").removeAllObservers()
         let mySonucScreen = self.storyboard?.instantiateViewController(withIdentifier: "SonucScreen")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.makeKeyAndVisible()
+        appDelegate.window?.rootViewController = mySonucScreen
+    }
+    
+    func oyunuBitirCan() {
+        if progressTimer != nil{
+            progressTimer.invalidate()
+            progressTimer=nil
+        }
+        ref.child(User.getUserNesne().id!).child("turn").removeAllObservers()
+        ref.child(User.getUserNesne().id!).child("words").removeAllObservers()
+        ref.child(User.getUserNesne().enemy!).child("words").removeAllObservers()
+        let mySonucScreen = self.storyboard?.instantiateViewController(withIdentifier: "KOSonucScreen")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.makeKeyAndVisible()
         appDelegate.window?.rootViewController = mySonucScreen

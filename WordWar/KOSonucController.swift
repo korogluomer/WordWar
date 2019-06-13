@@ -1,35 +1,20 @@
 //
-//  SonucController.swift
+//  KOSonucController.swift
 //  WordWar
 //
-//  Created by Ömer Köroğlu on 11.06.2019.
+//  Created by Ömer Köroğlu on 12.06.2019.
 //  Copyright © 2019 Ömer Köroğlu. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class SonucController: UIViewController {
+class KOSonucController: UIViewController {
 
-    @IBOutlet weak var awayImage: UIImageView!
-    @IBOutlet weak var homeImage: UIImageView!
-    @IBOutlet weak var awayScore: UILabel!
-    @IBOutlet weak var homeScore: UILabel!
-    @IBOutlet weak var awayNickname: UILabel!
-    @IBOutlet weak var awayWinRate: UILabel!
-    @IBOutlet weak var awayRank: UIImageView!
-    @IBOutlet weak var awayResult: UILabel!
-    @IBOutlet weak var homeResult: UILabel!
-    @IBOutlet weak var homeRank: UIImageView!
-    @IBOutlet weak var homeWinRate: UILabel!
-    @IBOutlet weak var homeNickname: UILabel!
-    let ref=Database.database().reference().child("users")
-    let user:User=User.getUserNesne()
-    let rakip:Rakip = Rakip.getRakipNesne()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         DispatchQueue.main.async {
             if let data = try? Data(contentsOf: URL(string: self.user.image!)!){
                 let image = UIImage(data: data)
@@ -45,6 +30,34 @@ class SonucController: UIViewController {
         winRateGetir()
         rankGetir()
         sonucGetir()
+        
+    }
+    @IBOutlet weak var homeNickname: UILabel!
+    @IBOutlet weak var homeWinRate: UILabel!
+    @IBOutlet weak var homeRank: UIImageView!
+    @IBOutlet weak var homeScore: UILabel!
+    @IBOutlet weak var homeResult: UILabel!
+    @IBOutlet weak var homeImage: UIImageView!
+    
+    @IBOutlet weak var awayNickname: UILabel!
+    @IBOutlet weak var awayWinRate: UILabel!
+    @IBOutlet weak var awayRank: UIImageView!
+    @IBOutlet weak var awayScore: UILabel!
+    @IBOutlet weak var awayResult: UILabel!
+    @IBOutlet weak var awayImage: UIImageView!
+    
+    
+    let ref=Database.database().reference().child("users")
+    let user:User=User.getUserNesne()
+    let rakip:Rakip = Rakip.getRakipNesne()
+    
+    @IBAction func geriDon(_ sender: Any) {
+        self.ref.child(User.getUserNesne().id!).child("score").removeValue()
+        
+        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = myTabBar
+        appDelegate.window?.makeKeyAndVisible()
     }
     
     func nicknameGetir() -> Void {
@@ -91,29 +104,32 @@ class SonucController: UIViewController {
     }
     
     func sonucGetir() -> Void {
+        
         skorGetir(uid: user.id!,scoreText: homeScore)
         skorGetir(uid: rakip.id!,scoreText: awayScore)
+        canGetir(uid: user.id!, sonucText: homeResult)
+        canGetir(uid: rakip.id!, sonucText: awayResult)
+        
     }
     func skorGetir(uid:String,scoreText:UILabel) {
         ref.child(uid).child("score").observeSingleEvent(of: .value, with: {(snapshot) in
             scoreText.text=String(snapshot.value as! Int)
+        })
+    }
+    
+    func canGetir(uid:String,sonucText:UILabel) {
+        ref.child(uid).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
+            let kalanCan=snapshot.value as! Int
+            if kalanCan == 0{
+                sonucText.text = "Kaybeden"
+            }else{
+                sonucText.text = "Kazanan"
+            }
             self.ref.child(User.getUserNesne().id!).child("health").removeValue()
             self.ref.child(User.getUserNesne().id!).child("turn").removeValue()
             self.ref.child(User.getUserNesne().id!).child("words").removeValue()
             self.ref.child(User.getUserNesne().id!).child("enemy").setValue("bos")
         })
-        
-        
-        
-    }
-    @IBAction func geriDon(_ sender: Any) {
-        self.ref.child(User.getUserNesne().id!).child("score").removeValue()
-        
-        
-        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = myTabBar
-        appDelegate.window?.makeKeyAndVisible()
     }
     
 }

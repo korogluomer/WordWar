@@ -14,7 +14,6 @@ class ArkadaslarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserBilgiler.bilgileriAl()
     }
 
 }

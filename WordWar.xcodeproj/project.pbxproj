@@ -23,6 +23,7 @@
 		A86AF0772278B2AC00017719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0762278B2AC00017719 /* Assets.xcassets */; };
 		A86AF07A2278B2AC00017719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0782278B2AC00017719 /* LaunchScreen.storyboard */; };
 		A86AF0822278C15700017719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A86AF0812278C15700017719 /* GoogleService-Info.plist */; };
+		A872BAEE22B14FB400726E45 /* KOSonucController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A872BAED22B14FB400726E45 /* KOSonucController.swift */; };
 		A872C35022A3F461007812DA /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A872C34F22A3F461007812DA /* GameController.swift */; };
 		A87388DA22AD51A700762B41 /* RakipBilgileriAl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87388D922AD51A700762B41 /* RakipBilgileriAl.swift */; };
 		A87388DC22AD521D00762B41 /* Rakip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87388DB22AD521D00762B41 /* Rakip.swift */; };
@@ -51,6 +52,7 @@
 		A86AF0792278B2AC00017719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A86AF07B2278B2AC00017719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A86AF0812278C15700017719 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A872BAED22B14FB400726E45 /* KOSonucController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KOSonucController.swift; sourceTree = "<group>"; };
 		A872C34F22A3F461007812DA /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		A87388D922AD51A700762B41 /* RakipBilgileriAl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakipBilgileriAl.swift; sourceTree = "<group>"; };
 		A87388DB22AD521D00762B41 /* Rakip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rakip.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				A87388DB22AD521D00762B41 /* Rakip.swift */,
 				A884185B22836FB9000B8F12 /* ProfilController.swift */,
 				A81AE61822AFBF41006EF142 /* SonucController.swift */,
+				A872BAED22B14FB400726E45 /* KOSonucController.swift */,
 				A83267CF22A2A7F10067DF88 /* ArkadaslarController.swift */,
 				A83267C922A28ED30067DF88 /* UserBilgileriAl.swift */,
 				A87388D922AD51A700762B41 /* RakipBilgileriAl.swift */,
@@ -265,6 +268,7 @@
 			files = (
 				A87388DA22AD51A700762B41 /* RakipBilgileriAl.swift in Sources */,
 				A816E6032278D9DD00C87769 /* KelimeDenemeController.swift in Sources */,
+				A872BAEE22B14FB400726E45 /* KOSonucController.swift in Sources */,
 				A884185C22836FB9000B8F12 /* ProfilController.swift in Sources */,
 				A83267CC22A29CC60067DF88 /* RakipAraniyorController.swift in Sources */,
 				A8C23C85229E8B650019B399 /* KelimeKontrol.swift in Sources */,
