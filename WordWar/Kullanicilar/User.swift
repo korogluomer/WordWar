@@ -8,27 +8,33 @@
 
 import Foundation
 
-class User {
+class User:Kullanicilar {
+    var id: String
     
-    var id:String?
+    var win: Int
+    
+    var lose: Int
+    
+    var nickName: String
+    
+    var image: String
+    
     var name:String?
-    var win:Int?
-    var lose:Int?
+    
     var email:String?
-    var nickName:String?
-    var image:String?
+    
     var enemy:String?
     
     
     static var nesneUser:User?=nil
     init(id:String?,name:String?,email:String?,nickName:String?,image:String?,win:Int?,lose:Int?,enemy:String?) {
-        self.id=id
+        self.id=id!
         self.name=name
         self.email=email
-        self.nickName=nickName
-        self.image=image
-        self.win=win
-        self.lose=lose
+        self.nickName=nickName!
+        self.image=image!
+        self.win=win!
+        self.lose=lose!
         self.enemy=enemy
     }
     static func getUserNesne() -> User{

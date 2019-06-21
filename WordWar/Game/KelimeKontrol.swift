@@ -8,7 +8,7 @@
 
 import FirebaseDatabase
 
-class KelimeKontrol {
+class KelimeKontrol:Game {
 
     init(){}
     

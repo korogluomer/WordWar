@@ -9,7 +9,11 @@
 import Foundation
 import Firebase
 
-class UserBilgiler {
+class UserBilgiler:BilgileriAl {
+    static func bilgileriAl(uid: String) {
+        
+    }
+    
     static func bilgileriAl() {
         let ref=Database.database().reference()
        
@@ -21,7 +25,7 @@ class UserBilgiler {
             let loseScore = userObject?["lose"]
             let enemy = userObject? ["enemy"]
             let image = userObject? ["image"]
-            User.getUserNesne().id=Auth.auth().currentUser?.uid
+            User.getUserNesne().id=(Auth.auth().currentUser?.uid)!
             User.getUserNesne().name=(name as? String)!
             User.getUserNesne().nickName=(nickname as? String)!
             User.getUserNesne().win=(winScore as? Int)!

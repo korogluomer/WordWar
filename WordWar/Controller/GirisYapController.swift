@@ -26,10 +26,9 @@ class GirisYapController: UIViewController {
         Auth.auth().signIn(withEmail: email.text!, password: sifre.text!){
             user,error in
             if user != nil {
-                let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "TabBar")    as! UITabBarController
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = myTabBar
-                appDelegate.window?.makeKeyAndVisible()
+                
+                let ekranGecis = TabBarGecis()
+                ekranGecis.gecisYap(storyboardId: "TabBar", viewCont: self)
                 self.ref.child("users").child((Auth.auth().currentUser?.uid)!).child("status").setValue("online")
             }
             else {

@@ -61,6 +61,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var awayCharText: UILabel!
     @IBOutlet weak var homeCharText: UILabel!
     
+    @IBOutlet weak var uyariText: UILabel!
     @IBOutlet weak var bgHome: UILabel!
     @IBOutlet weak var bgAway: UILabel!
     
@@ -71,7 +72,9 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         k.kelimeKontrolEt(kelime: kelime, fonksiyon: kelimeEkle)
         textField.text = nil
     }
-    let ref=Database.database().reference().child("users")
+    let homeRef=RefGetir(uid: User.getUserNesne().id)
+    let awayRef = RefGetir(uid: User.getUserNesne().enemy!)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,37 +90,37 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         homeCharText.text = alfabe[Int.random(in: 0 ..< alfabe.count)].uppercased()
         awayCharText.text = nil
         
-        homeUserName.text = User.getUserNesne().id
-        awayUserName.text = User.getUserNesne().enemy
+        homeUserName.text = User.getUserNesne().nickName
+        awayUserName.text = Rakip.getRakipNesne().nickName
         kelimeDoldur()
     }
     
     func kelimeEkle(durum:Bool)  {
         if durum && kelime.prefix(1) == String(homeCharText.text!).lowercased() && !homeWords.contains(kelime) && !awayWords.contains(kelime) {
             let keyTime:Int = Int(NSDate().timeIntervalSince1970 * 1000.rounded())
-            ref.child(User.getUserNesne().id!).child("words").child(String(keyTime)).setValue(kelime)
+            homeRef.getRefWords().child(String(keyTime)).setValue(kelime)
             
             turDegis()
         }
         else{
-            print("Kelime yanlış veya daha önceden girilmiş!")
+            uyariText.text="Kelime yanlış veya daha önceden girilmiş!"
         }
     }
 
     func kelimeDoldur() {
         homeWords.removeAll()
         awayWords.removeAll()
-        ref.child(User.getUserNesne().id!).child("words").observe(.childAdded, with: {(snapshot) in
+        homeRef.getRefWords().observe(.childAdded, with: {(snapshot) in
             self.homeWords.append(snapshot.value as! String)
             self.homeScorePoint+=((snapshot.value as? String)?.count)!
-            self.ref.child(User.getUserNesne().id!).child("score").setValue(self.homeScorePoint)
+            self.homeRef.getRefScore().setValue(self.homeScorePoint)
             self.homeTableView.reloadData()
             self.awayCharText.text = String((self.kelime?.suffix(1))!).uppercased()
             self.homeScore.text = String(self.homeScorePoint)
             self.skorKontrol()
         })
         
-        ref.child(User.getUserNesne().enemy!).child("words").observe(.childAdded, with: {(snaphot) in
+        awayRef.getRefWords().observe(.childAdded, with: {(snaphot) in
             self.awayWords.append(snaphot.value as! String)
             self.awayScorePoint+=((snaphot.value as? String)?.count)!
             self.awayScore.text = String(self.awayScorePoint)
@@ -130,7 +133,7 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     func turKontrol() {
-        ref.child(User.getUserNesne().id!).child("turn").observe(.value, with: {(snapshot) in
+        homeRef.getRefTurn().observe(.value, with: {(snapshot) in
             self.btnSend.isEnabled = ((snapshot.value as? Bool)!)
             if (snapshot.value as? Bool)!{
                 if !self.kelimeGeldiMi {
@@ -149,13 +152,12 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func turDegis() {
-        ref.child(User.getUserNesne().enemy!).child("turn").setValue(true)
-        ref.child(User.getUserNesne().id!).child("turn").setValue(false)
+        awayRef.getRefTurn().setValue(true)
+        homeRef.getRefTurn().setValue(false)
         btnSend.isEnabled = false
         kelimeGeldiMi = false
         progressTimer.invalidate()
-        progressTimer = nil
-        
+        uyariText.text=""
     }
     
     var progressTimer:Timer!
@@ -165,37 +167,42 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
         timerProgress.setProgress(timerProgress.progress, animated: true)
         if(timerProgress.progress == 0.0){
             can -= 1
-            ref.child(User.getUserNesne().id!).child("health").setValue(can)
+            homeRef.getRefHealth().setValue(can)
             canKontrol()
             turDegis()
         }
     }
     
     func skorKontrol() {
-        if Int(homeScore.text!)! >= 10{
-            ref.child(User.getUserNesne().id!).child("win").setValue(User.getUserNesne().win! + 1)
-            User.getUserNesne().win = User.getUserNesne().win! + 1
+        if Int(homeScore.text!)! >= 100{
+            homeRef.getRefWin().setValue(User.getUserNesne().win + 1)
+            User.getUserNesne().win = User.getUserNesne().win + 1
+            Rakip.getRakipNesne().lose += 1
             oyunuBitir()
         }
-        else if Int(awayScore.text!)! >= 10{
-            ref.child(User.getUserNesne().enemy!).child("win").setValue(Rakip.getRakipNesne().win! + 1)
-            Rakip.getRakipNesne().win = Rakip.getRakipNesne().win! + 1
+        else if Int(awayScore.text!)! >= 100{
+            self.homeRef.getRefWin().setValue(User.getUserNesne().lose + 1)
+            User.getUserNesne().lose += 1
+            Rakip.getRakipNesne().win = Rakip.getRakipNesne().win + 1
             oyunuBitir()
         }
     }
     
     func canKontrol() {
-        ref.child(User.getUserNesne().id!).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
+        homeRef.getRefHealth().observeSingleEvent(of: .value, with: {(snapshot) in
             self.can = ((snapshot.value as? Int)!)
             if self.can == 0{
+                self.homeRef.getRefWin().setValue(User.getUserNesne().lose + 1)
+                User.getUserNesne().lose += 1
                 self.oyunuBitirCan()
             }
         })
     }
     
     func rakipCanKontrol() {
-        ref.child(User.getUserNesne().enemy!).child("health").observeSingleEvent(of: .value, with: {(snapshot) in
+        awayRef.getRefHealth().observeSingleEvent(of: .value, with: {(snapshot) in
             if ((snapshot.value as? Int)!) == 0{
+                Rakip.getRakipNesne().lose += 1
                 self.oyunuBitirCan()
             }
         })
@@ -206,13 +213,11 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
             progressTimer.invalidate()
             progressTimer=nil
         }
-        ref.child(User.getUserNesne().id!).child("turn").removeAllObservers()
-        ref.child(User.getUserNesne().id!).child("words").removeAllObservers()
-        ref.child(User.getUserNesne().enemy!).child("words").removeAllObservers()
-        let mySonucScreen = self.storyboard?.instantiateViewController(withIdentifier: "SonucScreen")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.makeKeyAndVisible()
-        appDelegate.window?.rootViewController = mySonucScreen
+        homeRef.getRefTurn().removeAllObservers()
+        homeRef.getRefWords().removeAllObservers()
+        awayRef.getRefWords().removeAllObservers()
+        let ekranGecis = EkranGecis()
+        ekranGecis.gecisYap(storyboardId: "SonucScreen", viewCont: self)
     }
     
     func oyunuBitirCan() {
@@ -220,12 +225,10 @@ class GameController: UIViewController,UITableViewDelegate,UITableViewDataSource
             progressTimer.invalidate()
             progressTimer=nil
         }
-        ref.child(User.getUserNesne().id!).child("turn").removeAllObservers()
-        ref.child(User.getUserNesne().id!).child("words").removeAllObservers()
-        ref.child(User.getUserNesne().enemy!).child("words").removeAllObservers()
-        let mySonucScreen = self.storyboard?.instantiateViewController(withIdentifier: "KOSonucScreen")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.makeKeyAndVisible()
-        appDelegate.window?.rootViewController = mySonucScreen
+        homeRef.getRefTurn().removeAllObservers()
+        homeRef.getRefWords().removeAllObservers()
+        awayRef.getRefWords().removeAllObservers()
+        let ekranGecis = EkranGecis()
+        ekranGecis.gecisYap(storyboardId: "KOSonucScreen", viewCont: self)
     }
 }

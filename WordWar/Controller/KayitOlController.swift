@@ -51,11 +51,8 @@ class KayitOlController: UIViewController,UIImagePickerControllerDelegate,UINavi
                             return
                         }
                         self.ref.child((authResult?.user.uid)!).child("image").setValue(url!.absoluteString)
-                        
-                        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "TabBar")    as! UITabBarController
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.window?.rootViewController = myTabBar
-                        appDelegate.window?.makeKeyAndVisible()
+                        let ekranGecis = TabBarGecis()
+                        ekranGecis.gecisYap(storyboardId: "TabBar", viewCont: self)
                     }
                 }
                 

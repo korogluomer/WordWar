@@ -21,27 +21,25 @@ class VersusController: UIViewController {
         
 
         DispatchQueue.main.async {
-            if let data = try? Data(contentsOf: URL(string: self.user.image!)!){
+            if let data = try? Data(contentsOf: URL(string: self.user.image)!){
                 let image = UIImage(data: data)
                 self.homeImage.image = image
             }
             if self.rakip.image != "" {
-                if let data = try? Data(contentsOf: URL(string: self.rakip.image!)!){
+                if let data = try? Data(contentsOf: URL(string: self.rakip.image)!){
                     let image = UIImage(data: data)
                     self.awayImage.image = image
                     return
                 }
             }
         }
-        homeID.text=RakipBul.homeUID!
-        awayID.text=RakipBul.awayUID!
+        homeID.text=User.getUserNesne().nickName
+        awayID.text=Rakip.getRakipNesne().nickName
         
         
         DispatchQueue.main.asyncAfter(deadline: .now()+5.0){
-            let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "GameScreen")
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.makeKeyAndVisible()
-            appDelegate.window?.rootViewController = myTabBar
+            let ekranGecis = EkranGecis()
+            ekranGecis.gecisYap(storyboardId: "GameScreen", viewCont: self)
         }
     }
 

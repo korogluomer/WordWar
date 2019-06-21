@@ -16,11 +16,11 @@ class KOSonucController: UIViewController {
         
         
         DispatchQueue.main.async {
-            if let data = try? Data(contentsOf: URL(string: self.user.image!)!){
+            if let data = try? Data(contentsOf: URL(string: self.user.image)!){
                 let image = UIImage(data: data)
                 self.homeImage.image = image
             }
-            if let data = try? Data(contentsOf: URL(string: self.rakip.image!)!){
+            if let data = try? Data(contentsOf: URL(string: self.rakip.image)!){
                 let image = UIImage(data: data)
                 self.awayImage.image = image
                 return
@@ -52,12 +52,10 @@ class KOSonucController: UIViewController {
     let rakip:Rakip = Rakip.getRakipNesne()
     
     @IBAction func geriDon(_ sender: Any) {
-        self.ref.child(User.getUserNesne().id!).child("score").removeValue()
+        self.ref.child(User.getUserNesne().id).child("score").removeValue()
         
-        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = myTabBar
-        appDelegate.window?.makeKeyAndVisible()
+        let ekranGecis = TabBarGecis()
+        ekranGecis.gecisYap(storyboardId: "TabBar", viewCont: self)
     }
     
     func nicknameGetir() -> Void {
@@ -65,12 +63,12 @@ class KOSonucController: UIViewController {
         awayNickname.text=rakip.nickName
     }
     func winRateGetir() -> Void {
-        homeWinRate.text="\(user.win!)/\(user.lose!)"
-        awayWinRate.text="\(rakip.win!)/\(rakip.lose!)"
+        homeWinRate.text="\(user.win)/\(user.lose)"
+        awayWinRate.text="\(rakip.win)/\(rakip.lose)"
     }
     func rankGetir() -> Void {
         
-        var kd:Double=Double(user.win!)/(Double(user.lose!+1)/2)
+        var kd:Double=Double(user.win)/(Double(user.lose+1)/2)
         switch kd {
         case 10...30:
             homeRank.image=UIImage(named: "5")
@@ -86,7 +84,7 @@ class KOSonucController: UIViewController {
             homeRank.image=UIImage(named: "0")
         }
         
-        kd=Double(rakip.win!)/(Double(rakip.lose!+1)/2)
+        kd=Double(rakip.win)/(Double(rakip.lose+1)/2)
         switch kd {
         case 10...30:
             awayRank.image=UIImage(named: "5")
@@ -105,10 +103,10 @@ class KOSonucController: UIViewController {
     
     func sonucGetir() -> Void {
         
-        skorGetir(uid: user.id!,scoreText: homeScore)
-        skorGetir(uid: rakip.id!,scoreText: awayScore)
-        canGetir(uid: user.id!, sonucText: homeResult)
-        canGetir(uid: rakip.id!, sonucText: awayResult)
+        skorGetir(uid: user.id,scoreText: homeScore)
+        skorGetir(uid: rakip.id,scoreText: awayScore)
+        canGetir(uid: user.id, sonucText: homeResult)
+        canGetir(uid: rakip.id, sonucText: awayResult)
         
     }
     func skorGetir(uid:String,scoreText:UILabel) {
@@ -125,10 +123,11 @@ class KOSonucController: UIViewController {
             }else{
                 sonucText.text = "Kazanan"
             }
-            self.ref.child(User.getUserNesne().id!).child("health").removeValue()
-            self.ref.child(User.getUserNesne().id!).child("turn").removeValue()
-            self.ref.child(User.getUserNesne().id!).child("words").removeValue()
-            self.ref.child(User.getUserNesne().id!).child("enemy").setValue("bos")
+            self.ref.child(User.getUserNesne().id).child("health").removeValue()
+            self.ref.child(User.getUserNesne().id).child("turn").removeValue()
+            self.ref.child(User.getUserNesne().id).child("words").removeValue()
+            self.ref.child(User.getUserNesne().id).child("enemy").setValue("bos")
+            User.getUserNesne().enemy="bos"
         })
     }
     

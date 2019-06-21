@@ -32,15 +32,15 @@ class ProfilController: UIViewController {
         adSoyadText.text="\(user.name!)"
         email.text=user.email!
         DispatchQueue.main.async {
-            if let data = try? Data(contentsOf: URL(string: self.user.image!)!){
+            if let data = try? Data(contentsOf: URL(string: self.user.image)!){
                 let image = UIImage(data: data)
                 self.resim.image = image
                 return
             }
         }
-        loseText.text=String(user.lose!)
-        winText.text=String(user.win!)
-        nickname.text=String(user.nickName!)
+        loseText.text=String(user.lose)
+        winText.text=String(user.win)
+        nickname.text=String(user.nickName)
         
     }
     

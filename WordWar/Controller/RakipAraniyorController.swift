@@ -14,9 +14,9 @@ class RakipAraniyorController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Database.database().reference().child("users").child(User.getUserNesne().id!).child("status").setValue("araniyor")
+        Database.database().reference().child("users").child(User.getUserNesne().id).child("status").setValue("araniyor")
         
-        let kd:Double=Double(User.getUserNesne().win!)/(Double(User.getUserNesne().lose!+1)/2)
+        let kd:Double=Double(User.getUserNesne().win)/(Double(User.getUserNesne().lose+1)/2)
         print(kd)
         switch kd {
         case 10...30:
@@ -32,17 +32,12 @@ class RakipAraniyorController: UIViewController {
         default:
             rankImage.image=UIImage(named: "0")
         }
-        /*DispatchQueue.main.asyncAfter(deadline: .now()+1.0){
-            RakipBul.RakipAra(fonk: self.ekranGecis)
-        }*/
         RakipBul.RakipAra(fonk: self.ekranGecis)
     }
     
     func ekranGecis(){
-        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "VersusScreen")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.makeKeyAndVisible()
-        appDelegate.window?.rootViewController = myTabBar
+        let ekranGecis = EkranGecis()
+        ekranGecis.gecisYap(storyboardId: "VersusScreen", viewCont: self)
     }
     
 
